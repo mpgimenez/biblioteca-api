@@ -1,66 +1,157 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Biblioteca API
+==============
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Descrição
+---------
 
-## About Laravel
+Este projeto é uma API RESTful para um sistema de gerenciamento de biblioteca desenvolvido com Laravel. A API permite gerenciar autores, livros e empréstimos, e inclui autenticação e documentação da API.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Tecnologias Utilizadas
+----------------------
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+*   Laravel 10
+*   MySQL
+*   Swagger para documentação da API
+*   Sanctum para autenticação
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Instalação
+----------
 
-## Learning Laravel
+### Pré-requisitos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Certifique-se de ter o PHP, Composer e MySQL instalados em sua máquina.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Passos para Instalação
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1.  **Clone o Repositório**
+    
+        git clone https://github.com/seu-usuario/biblioteca-api.git
+    
+2.  **Acesse o Diretório do Projeto**
+    
+        cd biblioteca-api
+    
+3.  **Instale as Dependências**
+    
+        composer install
+    
+4.  **Configure o Ambiente**
+    
+    Copie o arquivo `.env.example` para `.env` e ajuste as configurações conforme necessário.
+    
+        cp .env.example .env
+    
+    Configure as variáveis de ambiente no arquivo `.env`, incluindo a configuração do banco de dados.
+    
+5.  **Gere a Chave de Aplicação**
+    
+        php artisan key:generate
+    
+6.  **Execute as Migrations**
+    
+        php artisan migrate
+    
+7.  **Instale o Swagger**
+    
+    Execute o comando para instalar o Swagger se não estiver incluído:
+    
+        composer require darkaonline/l5-swagger
+    
+    Publique o arquivo de configuração do Swagger:
+    
+        php artisan vendor:publish --provider="L5Swagger\L5SwaggerServiceProvider"
+    
+    Atualize o arquivo de configuração do Swagger em `config/l5-swagger.php` para incluir sua documentação.
+    
+8.  **Execute o Servidor**
+    
+        php artisan serve
+    
+    A API estará disponível em [http://localhost:8000](http://localhost:8000).
+    
 
-## Laravel Sponsors
+Rotas da API
+------------
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Autores
 
-### Premium Partners
+*   **Listar Autores**
+    
+        GET /authors
+    
+*   **Criar Autor**
+    
+        POST /authors
+    
+*   **Obter Autor**
+    
+        GET /authors/{id}
+    
+*   **Atualizar Autor**
+    
+        PUT /authors/{id}
+    
+*   **Deletar Autor**
+    
+        DELETE /authors/{id}
+    
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Livros
 
-## Contributing
+*   **Listar Livros**
+    
+        GET /books
+    
+*   **Criar Livro**
+    
+        POST /books
+    
+*   **Obter Livro**
+    
+        GET /books/{id}
+    
+*   **Atualizar Livro**
+    
+        PUT /books/{id}
+    
+*   **Deletar Livro**
+    
+        DELETE /books/{id}
+    
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Empréstimos
 
-## Code of Conduct
+*   **Listar Empréstimos**
+    
+        GET /loans
+    
+*   **Criar Empréstimo**
+    
+        POST /loans
+    
+*   **Obter Empréstimo**
+    
+        GET /loans/{id}
+    
+*   **Atualizar Empréstimo**
+    
+        PUT /loans/{id}
+    
+*   **Deletar Empréstimo**
+    
+        DELETE /loans/{id}
+    
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Documentação da API
+-------------------
 
-## Security Vulnerabilities
+A documentação da API está disponível em:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+*   [Documentação Swagger](http://localhost:8000/docs)
 
-## License
+Testes
+------
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Para executar os testes automatizados, use o comando:
+
+    php artisan test
